@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Adres } from './adressen.types';
 import { of } from 'rxjs';
+import { Address } from './addresses.types';
 @Injectable({
   providedIn: 'root'
 })
-export class AdressenService {
-  adressen: Adres[] = [
+export class AddressBookService {
+  adressen: Address[] = [
     {
       straatnaam: 'Dorpstraat',
       huisnummer: 1,

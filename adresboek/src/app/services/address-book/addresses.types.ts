@@ -1,16 +1,16 @@
-export interface Adres {
+export interface Address {
     straatnaam: string;
     huisnummer: number;
     huisnummerToevoeging?: string;
     plaatsnaam: string;
     postcode: string;
-    contactpersonen: Contactpersoon[];
+    contactpersonen: Contactperson[];
 }
 
-interface Contactpersoon {
+interface Contactperson {
     voornaam: string;
     achternaam: string;
     leeftijd?: number;
     telefoonnummer: string;
-    partner?: Contactpersoon;
+    partner?: Contactperson;
 }
