@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Adres } from './adressen.types'
+import { Adres } from './adressen.types';
 import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
