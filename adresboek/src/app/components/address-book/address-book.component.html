@@ -1,0 +1,11 @@
+<p>address-book works!</p>
+<ng-container *ngIf="addresses$ | async as addresses">
+  <button *ngIf="addresses.length === 0; else showAddresses" (click)="loadAddresses()">
+    Adressen ophalen
+  </button>
+  <ng-template #showAddresses>
+      <ng-container *ngFor="let address of addresses">
+          {{ address | json }}
+      </ng-container>
+  </ng-template>
+</ng-container>

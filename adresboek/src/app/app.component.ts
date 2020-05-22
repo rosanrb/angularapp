@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Adres } from './services/adressen/adressen.types';
-import { AdressenService } from './services/adressen/adressen.service';
 import { Observable } from 'rxjs';
+import { AddressBookService } from './services/address-book/addresses.service';
+import { Address } from './services/address-book/addresses.types';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit{
   title = 'adresboek';
-  adressen$: Observable<Adres[]>;
+  adressen$: Observable<Address[]>;
 
-  constructor(private adressenService: AdressenService) { }
+  constructor(private adressenService: AddressBookService) { }
 
   ngOnInit() {
     this.adressen$ = this.adressenService.get();

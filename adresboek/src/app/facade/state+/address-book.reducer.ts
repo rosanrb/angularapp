@@ -1,7 +1,9 @@
-import { createReducer, on, State } from '@ngrx/store';
-import * as actions from './actions';
-import { changeOldAddress } from '../mapper';
+import { createReducer, on, State, Action } from '@ngrx/store';
+import * as actions from './address-book.actions';
+import { changeOldAddress } from '../address-book.mapper';
 import { Address } from 'src/app/services/address-book/addresses.types';
+
+export const addressBookStoreId = 'address-book';
 
 export interface AddressBookState {
   addresses: Address[];
@@ -50,6 +52,6 @@ const addressBookReducer = createReducer(
   })),
 );
 
-export function getAddressBookReducer(state, action) {
+export function getAddressBookReducer(state: AddressBookState, action: Action) {
   return addressBookReducer(state, action);
 }

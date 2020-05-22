@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { AddressBookState } from './state+/reducer';
-import * as fromSelector from './state+/selectors';
-import * as actions from './state+/actions';
+import { AddressBookState } from './state+/address-book.reducer';
+import * as fromSelector from './state+/address-book.selectors';
+import * as actions from './state+/address-book.actions';
 import { Address } from '../services/address-book/addresses.types';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AddressBookFacade {
   addresses$ = this.store.pipe(select(fromSelector.selectAddresses));
 
