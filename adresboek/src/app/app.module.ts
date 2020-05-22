@@ -14,7 +14,6 @@ import { AddressPresentationalComponent } from './components/address-presentatio
 @NgModule({
   declarations: [
     AppComponent,
-    AddressPresentationalComponent,
   ],
   imports: [
     BrowserModule,

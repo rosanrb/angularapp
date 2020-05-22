@@ -1,1 +1,20 @@
-<p>address-presentational works!</p>
+<div class="address-presentational"
+    *ngIf="address">
+  <div>
+    {{ address.straatnaam }} {{ address.huisnummer }}
+    {{ address.huisnummerToevoeging }}
+  </div>
+  <div>{{ address.postcode }} {{ address.plaatsnaam }}</div>
+  <div *ngFor="let contact of address.contactpersonen">
+    <div>{{ contact.achternaam }} {{ contact.voornaam }}</div>
+    <div>
+      {{ contact.telefoonnummer }}
+    </div>
+    <div *ngIf="contact.partner as partner">
+      <div>{{ partner.achternaam }} {{ partner.voornaam }}</div>
+      <div>
+        {{ partner.telefoonnummer }}
+      </div>
+    </div>
+  </div>
+<div>
