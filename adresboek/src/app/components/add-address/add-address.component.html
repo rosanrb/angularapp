@@ -1,77 +1,83 @@
-<p>add-address works!</p>
-
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <div>
-      <label for="straatnaam">
+  <div class="form-fields-div">
+    <div class="field-container">
+      <input type="text" formControlName="straatnaam" class="field" placeholder="straatnaam" />
+      <label class="floating-label">
         Straatnaam
       </label>
-      <input id="straatnaam" type="text" formControlName="straatnaam" />
+      <div class="field-underline"></div>
     </div>
-    <label for="huisnummer">
-      Huisnummer
-    </label>
-    <input id="huisnummer" type="text" formControlName="huisnummer" />
-    <label for="huisnummerToevoeging">
-      Huisnummer toevoeging
-    </label>
-    <input
-      id="huisnummerToevoeging"
-      type="text"
-      formControlName="huisnummerToevoeging"
-    />
+    <div class="field-container">
+      <input type="text" formControlName="huisnummer" class="field" placeholder="huisnummer" />
+      <label class="floating-label">
+        Huisnummer
+      </label>
+      <div class="field-underline"></div>
+    </div>
+    <div class="field-container">
+      <input type="text" formControlName="huisnummerToevoeging" class="field" placeholder="huisnummer toevoeging" />
+      <label class="floating-label">
+        Huisnummer toevoeging
+      </label>
+      <div class="field-underline"></div>
+    </div>
   </div>
 
-  <div>
-    <div>
-      <label for="postcode">
+  <div class="form-fields-div">
+    <div class="field-container">
+      <input type="text" formControlName="postcode" class="field" placeholder="postcode" />
+      <label class="floating-label">
         Postcode
       </label>
-      <input id="postcode" type="text" formControlName="postcode" />
+      <div class="field-underline"></div>
     </div>
-    <label for="plaatsnaam">
-      Plaatsnaam
-    </label>
-    <input id="plaatsnaam" type="text" formControlName="plaatsnaam" />
+    <div class="field-container">
+      <input id="plaatsnaam" type="text" formControlName="plaatsnaam" class="field" placeholder="plaatsnaam" />
+      <label class="floating-label">
+        Plaatsnaam
+      </label>
+      <div class="field-underline"></div>
+    </div>
   </div>
 
-  <div>
-    <div>
-      <label for="voornaam">
+  <div class="form-fields-div">
+    <div class="field-container">
+      <input id="voornaam" type="text" formControlName="voornaam" class="field" placeholder="voornaam" />
+      <label class="floating-label">
         Voornaam
       </label>
-      <input id="voornaam" type="text" formControlName="voornaam" />
+      <div class="field-underline"></div>
     </div>
-    <label for="achternaam">
-      Achternaam
-    </label>
-    <input id="achternaam" type="text" formControlName="achternaam" />
+    <div class="field-container">
+      <input id="achternaam" type="text" formControlName="achternaam" class="field" placeholder="achternaam" />
+      <label class="floating-label">
+        Achternaam
+      </label>
+      <div class="field-underline"></div>
+    </div>
   </div>
 
-  <div>
-    <div>
-      <label for="leeftijd">
+  <div class="form-fields-div">
+    <div class="field-container">
+      <input id="leeftijd" type="text" formControlName="leeftijd" class="field" placeholder="leeftijd" />
+      <label class="floating-label">
         Leeftijd
       </label>
-      <input id="leeftijd" type="text" formControlName="leeftijd" />
+      <div class="field-underline"></div>
     </div>
   </div>
 
-  <div>
-    <div>
-      <label for="leeftijd">
+  <div class="form-fields-div">
+    <div class="field-container">
+      <input id="telefoonnummer" type="text" formControlName="telefoonnummer" class="field"
+        placeholder="telefoonnummer" />
+      <label class="floating-label">
         Telefoonnummer
       </label>
-      <input id="telefoonnummer" type="text" formControlName="telefoonnummer" />
+      <div class="field-underline"></div>
     </div>
   </div>
 
-  <button class="button" type="submit">Purchase</button>
+  <div *ngIf="invalidFormOnSubmit">Vul eerst alle velden correct in</div>
+  <button class="button" type="submit">Adres toevoegen</button>
 </form>
-
-<!-- straatnaam: new FormControl('', Validators.required),
-voornaam: new FormControl('', Validators.required),
-achternaam: new FormControl('', Validators.required),
-leeftijd: new FormControl(null),
-telefoonnummer: new FormControl('', Validators.required),
-partner: new FormControl(null), -->

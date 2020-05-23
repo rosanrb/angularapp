@@ -21,10 +21,7 @@ const addressBookReducer = createReducer(
   initialState,
   on(actions.addAddress, (state, { address }) => ({
     ...state,
-    addresses: {
-      ...state.addresses,
-      address,
-    },
+    addresses: [...state.addresses, address],
   })),
   on(actions.deleteAddress, (state, { address }) => ({
     ...state,
