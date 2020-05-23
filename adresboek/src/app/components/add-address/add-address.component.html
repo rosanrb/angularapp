@@ -1,0 +1,77 @@
+<p>add-address works!</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <div>
+      <label for="straatnaam">
+        Straatnaam
+      </label>
+      <input id="straatnaam" type="text" formControlName="straatnaam" />
+    </div>
+    <label for="huisnummer">
+      Huisnummer
+    </label>
+    <input id="huisnummer" type="text" formControlName="huisnummer" />
+    <label for="huisnummerToevoeging">
+      Huisnummer toevoeging
+    </label>
+    <input
+      id="huisnummerToevoeging"
+      type="text"
+      formControlName="huisnummerToevoeging"
+    />
+  </div>
+
+  <div>
+    <div>
+      <label for="postcode">
+        Postcode
+      </label>
+      <input id="postcode" type="text" formControlName="postcode" />
+    </div>
+    <label for="plaatsnaam">
+      Plaatsnaam
+    </label>
+    <input id="plaatsnaam" type="text" formControlName="plaatsnaam" />
+  </div>
+
+  <div>
+    <div>
+      <label for="voornaam">
+        Voornaam
+      </label>
+      <input id="voornaam" type="text" formControlName="voornaam" />
+    </div>
+    <label for="achternaam">
+      Achternaam
+    </label>
+    <input id="achternaam" type="text" formControlName="achternaam" />
+  </div>
+
+  <div>
+    <div>
+      <label for="leeftijd">
+        Leeftijd
+      </label>
+      <input id="leeftijd" type="text" formControlName="leeftijd" />
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <label for="leeftijd">
+        Telefoonnummer
+      </label>
+      <input id="telefoonnummer" type="text" formControlName="telefoonnummer" />
+    </div>
+  </div>
+
+  <button class="button" type="submit">Purchase</button>
+</form>
+
+<!-- straatnaam: new FormControl('', Validators.required),
+voornaam: new FormControl('', Validators.required),
+achternaam: new FormControl('', Validators.required),
+leeftijd: new FormControl(null),
+telefoonnummer: new FormControl('', Validators.required),
+partner: new FormControl(null), -->

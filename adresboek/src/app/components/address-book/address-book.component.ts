@@ -23,6 +23,6 @@ export class AddressBookComponent implements OnInit {
   }
 
   addAddress() {
-    // this.router.navigate()
+    this.router.navigateByUrl('/adres-toevoegen');
   }
 }
