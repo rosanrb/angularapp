@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressBookFacade } from 'src/app/facade/address-book.facade';
 import { Router } from '@angular/router';
+import { Address } from 'src/app/services/address-book/addresses.types';
 
 @Component({
   selector: 'app-address-book',
@@ -24,5 +25,9 @@ export class AddressBookComponent implements OnInit {
 
   addAddress() {
     this.router.navigateByUrl('/adres-toevoegen');
+  }
+
+  deleteAddress(addressToDelete: Address) {
+    this.facade.deleteAddress(addressToDelete);
   }
 }

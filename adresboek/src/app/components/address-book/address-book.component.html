@@ -5,7 +5,7 @@
   <ng-template #showAddresses>
     <button (click)="addAddress()">Adres toevoegen</button>
       <ng-container *ngFor="let address of addresses">
-          <app-address-presentational [address]="address"></app-address-presentational>
+          <app-address-presentational [address]="address" (deleteAddress)="deleteAddress($event)"></app-address-presentational>
       </ng-container>
   </ng-template>
 </ng-container>

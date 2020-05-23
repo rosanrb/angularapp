@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Address } from 'src/app/services/address-book/addresses.types';
 
 @Component({
@@ -8,10 +8,14 @@ import { Address } from 'src/app/services/address-book/addresses.types';
 })
 export class AddressPresentationalComponent implements OnInit {
   @Input() address: Address;
+  @Output() deleteAddress: EventEmitter<Address> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  deleteClicked() {
+    this.deleteAddress.next(this.address);
+  }
 }
