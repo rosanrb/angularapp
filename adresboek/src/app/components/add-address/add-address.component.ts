@@ -15,7 +15,7 @@ export class AddAddressComponent {
     huisnummer: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
     huisnummerToevoeging: new FormControl(''),
     plaatsnaam: new FormControl('', Validators.required),
-    postcode: new FormControl('', Validators.required),
+    postcode: new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$')]),
     voornaam: new FormControl('', Validators.required),
     achternaam: new FormControl('', Validators.required),
     leeftijd: new FormControl(null),
