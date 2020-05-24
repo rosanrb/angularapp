@@ -1,22 +1,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="address-presentational"
-    *ngIf="address">
-  <div>
-    {{ address.straatnaam }} {{ address.huisnummer }}
-    {{ address.huisnummerToevoeging }}
-  </div>
-  <div>{{ address.postcode }} {{ address.plaatsnaam }}</div>
-  <div *ngFor="let contact of address.contactpersonen">
-    <div>{{ contact.achternaam }} {{ contact.voornaam }}</div>
+<div class="address-presentational" *ngIf="address">
+  <div *ngIf="!(updatedClicked$ | async); else showUpdate">
     <div>
-      {{ contact.telefoonnummer }}
+      {{ address.straatnaam }} {{ address.huisnummer }}
+      {{ address.huisnummerToevoeging }}
     </div>
-    <div *ngIf="contact.partner as partner">
-      <div>{{ partner.achternaam }} {{ partner.voornaam }}</div>
+    <div>{{ address.postcode }} {{ address.plaatsnaam }}</div>
+    <div *ngFor="let contact of address.contactpersonen">
+      <div>{{ contact.achternaam }} {{ contact.voornaam }}</div>
       <div>
-        {{ partner.telefoonnummer }}
+        {{ contact.telefoonnummer }}
+      </div>
+      <div *ngIf="contact.partner as partner">
+        <div>{{ partner.achternaam }} {{ partner.voornaam }}</div>
+        <div>
+          {{ partner.telefoonnummer }}
+        </div>
       </div>
     </div>
+    <button class="btn" (click)="deleteClicked()"><i class="fa fa-trash"></i></button>
+    <button class="btn" (click)="editClicked()"><i class="fa fa-edit"></i></button>
   </div>
-  <button class="btn" (click)="deleteClicked()"><i class="fa fa-trash"></i></button>
-<div>
+  <ng-template #showUpdate>
+    <app-update-address (addressUpdated)="addressUpdated($event)" [oldAddress]="address"></app-update-address>
+  </ng-template>
+  <div>

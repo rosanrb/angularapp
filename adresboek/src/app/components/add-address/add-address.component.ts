@@ -26,7 +26,7 @@ export class AddAddressComponent {
   invalidFormOnSubmit = false;
 
   constructor(
-    private readonly facade: AddressBookFacade,
+    protected readonly facade: AddressBookFacade,
     private readonly router: Router,
   ) { }
 
@@ -54,7 +54,7 @@ export class AddAddressComponent {
     this.invalidFormOnSubmit = true;
   }
 
-  private getFormValue(formControlName: string): string | number {
+  protected getFormValue(formControlName: string): string | number {
     return this.form.get(formControlName).value;
   }
 }
