@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { initialState } from '../../facade/state+/address-book.reducer';
 import { UpdateAddressComponent } from './update-address.component';
+import { AddressBookFacade } from 'src/app/facade/address-book.facade';
+import { provideMockStore } from '@ngrx/store/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UpdateAddressComponent', () => {
   let component: UpdateAddressComponent;
@@ -8,9 +11,10 @@ describe('UpdateAddressComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpdateAddressComponent ]
-    })
-    .compileComponents();
+      declarations: [UpdateAddressComponent],
+      providers: [provideMockStore({ initialState })],
+      imports: [RouterTestingModule.withRoutes([])],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
