@@ -6,16 +6,10 @@
       {{ address.huisnummerToevoeging }}
     </div>
     <div>{{ address.postcode }} {{ address.plaatsnaam }}</div>
-    <div *ngFor="let contact of address.contactpersonen">
+    <div *ngIf="address.contactpersoon as contact">
       <div>{{ contact.achternaam }} {{ contact.voornaam }}</div>
       <div>
         {{ contact.telefoonnummer }}
-      </div>
-      <div *ngIf="contact.partner as partner">
-        <div>{{ partner.achternaam }} {{ partner.voornaam }}</div>
-        <div>
-          {{ partner.telefoonnummer }}
-        </div>
       </div>
     </div>
     <button class="btn" (click)="deleteClicked()"><i class="fa fa-trash"></i></button>

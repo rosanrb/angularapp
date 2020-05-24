@@ -24,13 +24,12 @@ export class UpdateAddressComponent extends AddAddressComponent implements OnCha
         huisnummerToevoeging: this.oldAddress.huisnummerToevoeging,
         plaatsnaam: this.oldAddress.plaatsnaam,
         postcode: this.oldAddress.postcode,
-        voornaam: this.oldAddress.contactpersonen[0].voornaam,
-        achternaam: this.oldAddress.contactpersonen[0].achternaam,
-        leeftijd: this.oldAddress.contactpersonen[0].leeftijd,
-        telefoonnummer: this.oldAddress.contactpersonen[0].telefoonnummer,
-        partner: this.oldAddress.contactpersonen[0].partner,
+        voornaam: this.oldAddress.contactpersoon.voornaam,
+        achternaam: this.oldAddress.contactpersoon.achternaam,
+        leeftijd: this.oldAddress.contactpersoon.leeftijd,
+        telefoonnummer: this.oldAddress.contactpersoon.telefoonnummer,
       });
-    } 
+    }
   }
 
   onSubmit() {
@@ -48,7 +47,7 @@ export class UpdateAddressComponent extends AddAddressComponent implements OnCha
         huisnummerToevoeging: this.getFormValue('huisnummerToevoeging')?.toString(),
         plaatsnaam: this.getFormValue('plaatsnaam').toString(),
         postcode: this.getFormValue('postcode').toString(),
-        contactpersonen: [newContact],
+        contactpersoon: newContact,
       };
 
       this.facade.updateAddress(newAddress, this.oldAddress);

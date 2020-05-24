@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Address } from 'src/app/services/address-book/addresses.types';
 import { AddressBookFacade } from 'src/app/facade/address-book.facade';
 import { Router } from '@angular/router';
@@ -19,8 +19,7 @@ export class AddAddressComponent {
     voornaam: new FormControl('', Validators.required),
     achternaam: new FormControl('', Validators.required),
     leeftijd: new FormControl(null),
-    telefoonnummer: new FormControl('', Validators.required),
-    partner: new FormControl(null),
+    telefoonnummer: new FormControl('', [Validators.required, this.telephoneNumberValidator]),
   }, { updateOn: 'change' });
 
   invalidFormOnSubmit = false;
@@ -45,7 +44,7 @@ export class AddAddressComponent {
         huisnummerToevoeging: this.getFormValue('huisnummerToevoeging')?.toString(),
         plaatsnaam: this.getFormValue('plaatsnaam').toString(),
         postcode: this.getFormValue('postcode').toString(),
-        contactpersonen: [newContact],
+        contactpersoon: newContact,
       };
 
       this.facade.addAddress(newAddress);
@@ -56,5 +55,12 @@ export class AddAddressComponent {
 
   protected getFormValue(formControlName: string): string | number {
     return this.form.get(formControlName).value;
+  }
+
+  private telephoneNumberValidator(control: AbstractControl): {[key: string]: boolean} {
+    const landlineNumber = /^(((0)[1-9]{2}[0-9][-]?[1-9][0-9]{5})|((\\+31|0|0031)[1-9][0-9][-]?[1-9][0-9]{6}))$/;
+    const mobileNumber = /^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i;
+    const invalidPhoneNumber = (landlineNumber.test(control.value) || mobileNumber.test(control.value));
+    return invalidPhoneNumber ? null : { phoneNumber: true };
   }
 }

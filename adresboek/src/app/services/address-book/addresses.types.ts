@@ -4,7 +4,7 @@ export interface Address {
     huisnummerToevoeging?: string;
     plaatsnaam: string;
     postcode: string;
-    contactpersonen: Contactperson[];
+    contactpersoon: Contactperson;
 }
 
 interface Contactperson {
@@ -12,5 +12,4 @@ interface Contactperson {
     achternaam: string;
     leeftijd?: number;
     telefoonnummer: string;
-    partner?: Contactperson;
 }

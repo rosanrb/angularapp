@@ -27,5 +27,5 @@ export class AddressPresentationalComponent implements OnInit {
 
   addressUpdated(updated: boolean) {
     this.updatedClicked$.next(false);
-  } 
+  }
 }
