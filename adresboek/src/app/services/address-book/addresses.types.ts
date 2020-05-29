@@ -12,4 +12,5 @@ interface Contactperson {
     achternaam: string;
     leeftijd?: number;
     telefoonnummer: string;
+    partner?: Contactperson;
 }

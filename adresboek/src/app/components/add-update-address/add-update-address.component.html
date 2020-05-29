@@ -79,5 +79,5 @@
   </div>
 
   <div *ngIf="invalidFormOnSubmit">Vul eerst alle velden correct in</div>
-  <button class="button" type="submit">Adres toevoegen</button>
+  <button class="button" type="submit">{{ addressToUpdate ? 'Adres wijzigen' : 'Adres toevoegen'}}</button>
 </form>

@@ -1,15 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Address } from 'src/app/services/address-book/addresses.types';
 import { AddressBookFacade } from 'src/app/facade/address-book.facade';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-address',
-  templateUrl: './add-address.component.html',
-  styleUrls: ['./add-address.component.scss']
+  selector: 'app-add-update-address',
+  templateUrl: './add-update-address.component.html',
+  styleUrls: ['./add-update-address.component.scss']
 })
-export class AddAddressComponent {
+export class AddUpdateAddressComponent implements OnChanges {
+  @Input() addressToUpdate: Address;
+  
   readonly form = new FormGroup({
     straatnaam: new FormControl('', Validators.required),
     huisnummer: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
@@ -29,6 +31,22 @@ export class AddAddressComponent {
     private readonly router: Router,
   ) { }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.addressToUpdate && this.addressToUpdate) {
+      this.form.patchValue({
+        straatnaam: this.addressToUpdate.straatnaam,
+        huisnummer: this.addressToUpdate.huisnummer,
+        huisnummerToevoeging: this.addressToUpdate.huisnummerToevoeging,
+        plaatsnaam: this.addressToUpdate.plaatsnaam,
+        postcode: this.addressToUpdate.postcode,
+        voornaam: this.addressToUpdate.contactpersoon.voornaam,
+        achternaam: this.addressToUpdate.contactpersoon.achternaam,
+        leeftijd: this.addressToUpdate.contactpersoon.leeftijd,
+        telefoonnummer: this.addressToUpdate.contactpersoon.telefoonnummer,
+      });
+    }
+  }
+
   onSubmit() {
     if (this.form.valid) {
       const newContact = {
@@ -47,8 +65,12 @@ export class AddAddressComponent {
         contactpersoon: newContact,
       };
 
-      this.facade.addAddress(newAddress);
-      this.router.navigateByUrl('/adresboek');
+      if (!this.addressToUpdate) {
+        this.facade.addAddress(newAddress);
+        this.router.navigateByUrl('/adresboek');  
+      } else {
+        this.facade.updateAddress(newAddress, this.addressToUpdate);
+      }
     }
     this.invalidFormOnSubmit = true;
   }

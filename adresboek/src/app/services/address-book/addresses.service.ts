@@ -28,6 +28,12 @@ export class AddressBookService {
         achternaam: 'Bakker',
         leeftijd: 32,
         telefoonnummer: '0687654321',
+        partner: {
+          voornaam: 'Peter',
+          achternaam: 'van Diemen',
+          leeftijd: 34,
+          telefoonnummer: '0687654329',
+        }
       },
     },
   ];

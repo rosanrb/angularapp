@@ -7,15 +7,23 @@
     </div>
     <div>{{ address.postcode }} {{ address.plaatsnaam }}</div>
     <div *ngIf="address.contactpersoon as contact">
+      <div [class.contact]="contact.partner">
       <div>{{ contact.achternaam }} {{ contact.voornaam }}</div>
       <div>
         {{ contact.telefoonnummer }}
+      </div>
+    </div>
+      <div *ngIf="contact.partner as partner" class="contact partner">
+        <div>{{ partner.achternaam }} {{ partner.voornaam }}</div>
+        <div>
+          {{ partner.telefoonnummer }}
+        </div>
       </div>
     </div>
     <button class="btn" (click)="deleteClicked()"><i class="fa fa-trash"></i></button>
     <button class="btn" (click)="editClicked()"><i class="fa fa-edit"></i></button>
   </div>
   <ng-template #showUpdate>
-    <app-update-address (addressUpdated)="addressUpdated($event)" [oldAddress]="address"></app-update-address>
+    <app-add-update-address (addressUpdated)="addressUpdated($event)" [addressToUpdate]="address"></app-add-update-address>
   </ng-template>
   <div>

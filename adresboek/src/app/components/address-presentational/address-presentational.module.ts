@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddressPresentationalComponent } from './address-presentational.component';
-import { UpdateAddressModule } from '../update-address';
+import { AddUpdateAddressModule } from '../add-update-address';
 
 @NgModule({
   declarations: [
@@ -9,7 +9,7 @@ import { UpdateAddressModule } from '../update-address';
   ],
   imports: [
     CommonModule,
-    UpdateAddressModule,
+    AddUpdateAddressModule,
   ],
   exports: [
     AddressPresentationalComponent,

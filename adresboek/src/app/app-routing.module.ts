@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddressBookComponent } from './components';
-import { AddAddressComponent } from './components/add-address';
+import { AddUpdateAddressComponent } from './components/add-update-address';
 
 
 const routes: Routes = [
@@ -10,8 +10,8 @@ const routes: Routes = [
     component: AddressBookComponent
   },
   {
-    path: 'adres-toevoegen',
-    component: AddAddressComponent
+    path: 'adres-toevoegen-wijzigen',
+    component: AddUpdateAddressComponent
   },
 ];
 

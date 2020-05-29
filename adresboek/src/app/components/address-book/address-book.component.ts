@@ -25,7 +25,7 @@ export class AddressBookComponent implements OnInit {
   }
 
   addAddress() {
-    this.router.navigateByUrl('/adres-toevoegen');
+    this.router.navigateByUrl('/adres-toevoegen-wijzigen');
   }
 
   deleteAddress(addressToDelete: Address) {

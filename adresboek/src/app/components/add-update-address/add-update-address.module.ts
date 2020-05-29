@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddAddressComponent } from './add-address.component';
+import { AddUpdateAddressComponent } from './add-update-address.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AddAddressComponent,
+    AddUpdateAddressComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule
   ],
   exports: [
-    AddAddressComponent,
+    AddUpdateAddressComponent,
   ],
 })
-export class AddAddressModule { }
+export class AddUpdateAddressModule { }

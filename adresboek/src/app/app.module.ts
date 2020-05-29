@@ -10,7 +10,7 @@ import { AddressBookStoreModule } from './facade/address-book-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AddressPresentationalComponent } from './components/address-presentational/address-presentational.component';
-import { AddAddressComponent } from './components/add-address/add-address.component';
+import { AddUpdateAddressComponent } from './components/add-update-address/add-update-address.component';
 
 @NgModule({
   declarations: [
