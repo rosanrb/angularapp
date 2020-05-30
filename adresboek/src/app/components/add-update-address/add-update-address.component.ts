@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { Address } from 'src/app/services/address-book/addresses.types';
+import { Address, Contactperson } from 'src/app/services/address-book/addresses.types';
 import { AddressBookFacade } from 'src/app/facade/address-book.facade';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-update-address',
@@ -11,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class AddUpdateAddressComponent implements OnChanges {
   @Input() addressToUpdate: Address;
+  addPartnerClicked$ = new BehaviorSubject(null);
   
   readonly form = new FormGroup({
     straatnaam: new FormControl('', Validators.required),
@@ -21,10 +24,12 @@ export class AddUpdateAddressComponent implements OnChanges {
     voornaam: new FormControl('', Validators.required),
     achternaam: new FormControl('', Validators.required),
     leeftijd: new FormControl(null),
-    telefoonnummer: new FormControl('', [Validators.required, this.telephoneNumberValidator]),
+    telefoonnummer: new FormControl('', [Validators.required, telephoneNumberValidator]),
   }, { updateOn: 'change' });
 
   invalidFormOnSubmit = false;
+
+  partner: Contactperson;
 
   constructor(
     protected readonly facade: AddressBookFacade,
@@ -54,6 +59,7 @@ export class AddUpdateAddressComponent implements OnChanges {
         achternaam: this.getFormValue('achternaam').toString(),
         leeftijd: this.getFormValue('leeftijd') ? Number(this.getFormValue('leeftijd')) : null,
         telefoonnummer: this.getFormValue('telefoonnummer').toString(),
+        partner: this.partner,
       };
 
       const newAddress: Address = {
@@ -75,14 +81,29 @@ export class AddUpdateAddressComponent implements OnChanges {
     this.invalidFormOnSubmit = true;
   }
 
+  addPartnerClicked() {
+    this.addPartnerClicked$.next(true);
+  }
+
+  addOrUpdatePartner(partner: Contactperson) {
+    this.partner = {
+      voornaam: partner.voornaam,
+      achternaam: partner.achternaam,
+      telefoonnummer: partner.telefoonnummer,
+      leeftijd: partner.leeftijd,
+    }
+
+    this.addPartnerClicked$.next(false);
+  }
+
   protected getFormValue(formControlName: string): string | number {
     return this.form.get(formControlName).value;
   }
+}
 
-  private telephoneNumberValidator(control: AbstractControl): {[key: string]: boolean} {
-    const landlineNumber = /^(((0)[1-9]{2}[0-9][-]?[1-9][0-9]{5})|((\\+31|0|0031)[1-9][0-9][-]?[1-9][0-9]{6}))$/;
-    const mobileNumber = /^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i;
-    const invalidPhoneNumber = (landlineNumber.test(control.value) || mobileNumber.test(control.value));
-    return invalidPhoneNumber ? null : { phoneNumber: true };
-  }
+export function telephoneNumberValidator(control: AbstractControl): {[key: string]: boolean} {
+  const landlineNumber = /^(((0)[1-9]{2}[0-9][-]?[1-9][0-9]{5})|((\\+31|0|0031)[1-9][0-9][-]?[1-9][0-9]{6}))$/;
+  const mobileNumber = /^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i;
+  const invalidPhoneNumber = (landlineNumber.test(control.value) || mobileNumber.test(control.value));
+  return invalidPhoneNumber ? null : { phoneNumber: true };
 }

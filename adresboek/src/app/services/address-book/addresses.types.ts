@@ -7,7 +7,7 @@ export interface Address {
     contactpersoon: Contactperson;
 }
 
-interface Contactperson {
+export interface Contactperson {
     voornaam: string;
     achternaam: string;
     leeftijd?: number;
